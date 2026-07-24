@@ -388,47 +388,51 @@
 
             <div class="cert-list">
               <!-- Cert 1 -->
-              <div class="cert-item glass-card">
+              <div class="cert-item glass-card" data-cert-img="assets/cert_ibm_cloud.jpg" data-cert-title="IBM Cloud Certification" data-cert-desc="Fundamentals of Cloud Computing & Core Architectures" data-cert-issuer="IBM Cloud">
                 <div class="cert-icon-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 </div>
-                <div>
+                <div class="cert-info">
                   <h4>IBM Cloud Certification</h4>
                   <p>Fundamentals of Cloud Computing & Core Architectures</p>
                 </div>
+                <button class="btn btn-outline btn-sm view-cert-btn" aria-label="View IBM Cloud Certification">View</button>
               </div>
 
               <!-- Cert 2 -->
-              <div class="cert-item glass-card">
+              <div class="cert-item glass-card" data-cert-img="assets/cert_ibm_skills.jpg" data-cert-title="IBM Skills Build" data-cert-desc="Professional Development & Advanced Web Development tracks" data-cert-issuer="IBM Skills Build">
                 <div class="cert-icon-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                 </div>
-                <div>
+                <div class="cert-info">
                   <h4>IBM Skills Build</h4>
                   <p>Professional Development & Advanced Web Development tracks</p>
                 </div>
+                <button class="btn btn-outline btn-sm view-cert-btn" aria-label="View IBM Skills Build Certificate">View</button>
               </div>
 
               <!-- Cert 3 -->
-              <div class="cert-item glass-card">
+              <div class="cert-item glass-card" data-cert-img="assets/cert_infosys.jpg" data-cert-title="Infosys Springboard" data-cert-desc="Frontend Technologies & Responsive Web Design certifications" data-cert-issuer="Infosys Springboard">
                 <div class="cert-icon-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon><line x1="12" y1="22" x2="12" y2="12.5"></line><line x1="22" y1="8.5" x2="12" y2="12.5"></line><line x1="2" y1="8.5" x2="12" y2="12.5"></line><polyline points="22 15.5 12 12.5 2 15.5"></polyline></svg>
                 </div>
-                <div>
+                <div class="cert-info">
                   <h4>Infosys Springboard</h4>
                   <p>Frontend Technologies & Responsive Web Design certifications</p>
                 </div>
+                <button class="btn btn-outline btn-sm view-cert-btn" aria-label="View Infosys Springboard Certificate">View</button>
               </div>
 
               <!-- Cert 4 -->
-              <div class="cert-item glass-card">
+              <div class="cert-item glass-card" data-cert-img="assets/cert_iit.jpg" data-cert-title="IIT Spoken Tutorial" data-cert-desc="Completed hands-on software training and laboratory modules" data-cert-issuer="IIT Spoken Tutorial">
                 <div class="cert-icon-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
                 </div>
-                <div>
+                <div class="cert-info">
                   <h4>IIT Spoken Tutorial</h4>
                   <p>Completed hands-on software training and laboratory modules</p>
                 </div>
+                <button class="btn btn-outline btn-sm view-cert-btn" aria-label="View IIT Spoken Tutorial Certificate">View</button>
               </div>
             </div>
           </div>
@@ -608,6 +612,36 @@
       </div>
     </div>
   </footer>
+
+  <!-- Certificate Lightbox Modal -->
+  <div id="cert-modal" class="cert-modal" role="dialog" aria-modal="true" aria-labelledby="modal-cert-title">
+    <div class="cert-modal-overlay"></div>
+    <div class="cert-modal-content glass-card">
+      <button class="cert-modal-close" aria-label="Close modal">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="cert-modal-body">
+        <div class="cert-modal-image-container">
+          <img id="modal-cert-img" src="" alt="Certificate Image">
+        </div>
+        <div class="cert-modal-info">
+          <span id="modal-cert-issuer" class="cert-badge">Issuer</span>
+          <h3 id="modal-cert-title">Certificate Title</h3>
+          <p id="modal-cert-desc">Certificate description details.</p>
+          <div class="cert-modal-actions">
+            <a id="modal-cert-download" href="" download class="btn btn-primary btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download
+            </a>
+            <a id="modal-cert-open" href="" target="_blank" class="btn btn-outline btn-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              Open in New Tab
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Custom JavaScript -->
   <script src="script.js"></script>

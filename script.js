@@ -251,4 +251,76 @@ document.addEventListener('DOMContentLoaded', () => {
     formFeedback.className = `form-feedback ${type}`;
   };
 
+  /* ==========================================================================
+     Certificate Lightbox Modal Interaction
+     ========================================================================== */
+  const certModal = document.getElementById('cert-modal');
+  const viewCertBtns = document.querySelectorAll('.view-cert-btn');
+  
+  if (certModal && viewCertBtns.length > 0) {
+    const modalImg = document.getElementById('modal-cert-img');
+    const modalIssuer = document.getElementById('modal-cert-issuer');
+    const modalTitle = document.getElementById('modal-cert-title');
+    const modalDesc = document.getElementById('modal-cert-desc');
+    const modalDownload = document.getElementById('modal-cert-download');
+    const modalOpen = document.getElementById('modal-cert-open');
+    const modalCloseBtn = certModal.querySelector('.cert-modal-close');
+    const modalOverlay = certModal.querySelector('.cert-modal-overlay');
+
+    // Helper to calculate scrollbar width to prevent page shift when scrollbar disappears
+    const getScrollbarWidth = () => {
+      return window.innerWidth - document.documentElement.clientWidth;
+    };
+
+    const openModal = (btn) => {
+      const certItem = btn.closest('.cert-item');
+      if (!certItem) return;
+
+      const imgPath = certItem.getAttribute('data-cert-img');
+      const title = certItem.getAttribute('data-cert-title');
+      const desc = certItem.getAttribute('data-cert-desc');
+      const issuer = certItem.getAttribute('data-cert-issuer');
+
+      if (modalImg) modalImg.src = imgPath;
+      if (modalIssuer) modalIssuer.textContent = issuer;
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalDesc) modalDesc.textContent = desc;
+      
+      if (modalDownload) modalDownload.href = imgPath;
+      if (modalOpen) modalOpen.href = imgPath;
+
+      const sbWidth = getScrollbarWidth();
+      document.documentElement.style.setProperty('--scrollbar-width', `${sbWidth}px`);
+      document.body.classList.add('modal-open');
+      certModal.classList.add('active');
+    };
+
+    const closeModal = () => {
+      certModal.classList.remove('active');
+      document.body.classList.remove('modal-open');
+      
+      setTimeout(() => {
+        if (modalImg) modalImg.src = '';
+      }, 300);
+    };
+
+    viewCertBtns.forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn));
+    });
+
+    if (modalCloseBtn) {
+      modalCloseBtn.addEventListener('click', closeModal);
+    }
+
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', closeModal);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && certModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
 });
