@@ -192,6 +192,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // Open WhatsApp chat in a new tab with pre-filled message
+      const whatsappText = `Hello Laxman,
+
+I am contacting you from your portfolio website.
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+
+Message:
+${message}`;
+
+      const whatsappUrl = `https://wa.me/919003889704?text=${encodeURIComponent(whatsappText)}`;
+      window.open(whatsappUrl, '_blank');
+
       // Visual sending states
       formSubmitBtn.disabled = true;
       const btnSpan = formSubmitBtn.querySelector('span');
